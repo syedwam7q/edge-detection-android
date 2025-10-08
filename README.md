@@ -21,8 +21,9 @@ A real-time edge detection viewer Android application that captures camera frame
 
 ### Web Viewer (TypeScript)
 - ✅ **Frame Display**: Canvas-based image rendering
+- ✅ **Client-Side Edge Detection**: Real-time Sobel operator processing
 - ✅ **Statistics Overlay**: FPS, resolution, processing time
-- ✅ **File Upload**: Load custom images for viewing
+- ✅ **File Upload**: Load and automatically process custom images
 - ✅ **Sample Generator**: Built-in test frame generator
 - ✅ **Responsive Design**: Mobile-friendly UI
 
@@ -99,16 +100,50 @@ Hardware Rendering (OpenGL ES 2.0)
    - Shows performance statistics
    - Modular, type-safe code
 
-## ⚙️ Setup Instructions
+## 🚀 Quick Start Guide
 
-### Prerequisites
+### Running the Web Viewer (Easiest Way to Test!)
+
+1. **Navigate to web directory:**
+```bash
+cd web
+```
+
+2. **Install dependencies:**
+```bash
+npm install
+```
+
+3. **Build TypeScript:**
+```bash
+npm run build
+```
+
+4. **Start the server:**
+```bash
+npm run serve
+```
+
+5. **Open in browser:**
+```
+http://localhost:8000
+```
+
+6. **Test edge detection:**
+   - Click "📁 Upload Image" and select any photo
+   - Watch it automatically process with Sobel edge detection!
+   - Check the stats panel for processing time
+
+### Running the Android App
+
+#### Prerequisites
 
 - Android Studio Hedgehog (2023.1.1) or later
 - Android SDK 24+ (Android 7.0+)
 - NDK (23.1.7779620 or later)
 - CMake (3.22.1+)
 - OpenCV Android SDK 4.8.0+
-- Node.js 18+ and npm (for web viewer)
+- Physical Android device or emulator with camera
 
 ### OpenCV Setup
 
@@ -125,51 +160,36 @@ dependencies {
 }
 ```
 
-### Building the Android App
+#### Steps to Build and Run
 
-1. Clone the repository:
+1. **Clone the repository:**
 ```bash
-git clone https://github.com/syedwam7q/edge-detection-android.git
-cd edge-detection-android
+git clone <repository-url>
+cd edge-detection
 ```
 
-2. Open in Android Studio
+2. **Open project in Android Studio:**
+   - File → Open → Select the `edge-detection` directory
 
-3. Sync Gradle files
+3. **Sync Gradle:**
+   - Android Studio will prompt to sync - click "Sync Now"
 
-4. Build the project:
+4. **Connect Android device:**
+   - Enable USB Debugging on your device
+   - Connect via USB
+
+5. **Build and install:**
 ```bash
-./gradlew build
-```
-
-5. Run on device or emulator:
-```bash
+./gradlew assembleDebug
 ./gradlew installDebug
 ```
 
-### Building the Web Viewer
+Or simply click the **▶️ Run** button in Android Studio.
 
-1. Navigate to web directory:
-```bash
-cd web
-```
+6. **Grant camera permissions** when prompted
 
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Build TypeScript:
-```bash
-npm run build
-```
-
-4. Serve locally:
-```bash
-npm run serve
-```
-
-5. Open http://localhost:8000 in browser
+7. **Toggle modes:**
+   - Tap "TOGGLE MODE" to switch between raw feed and edge detection
 
 ## 📷 Screenshots
 
@@ -206,9 +226,10 @@ npm run serve
 
 ### TypeScript Web Viewer (20%)
 - Type-safe DOM manipulation
-- Canvas-based rendering
+- Canvas-based rendering with client-side edge detection
+- Sobel operator implementation in pure TypeScript
 - Modular class-based architecture
-- Real-time statistics display
+- Real-time statistics display with performance monitoring
 
 ### Project Structure & Documentation (15%)
 - Clean, modular codebase

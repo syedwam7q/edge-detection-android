@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Edge Detection</string>
+    <string name="camera_permission_required">Camera permission is required</string>
+    <string name="toggle_mode">Toggle Mode</string>
+    <string name="fps_label">FPS: %1$.1f</string>
+    <string name="mode_raw">Raw Feed</string>
+    <string name="mode_edge">Edge Detection</string>
+</resources>

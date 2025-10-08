@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "EdgeDetection"
 include ':app'
+include ':opencv'
+project(':opencv').projectDir = new File(rootProject.projectDir, 'OpenCV-android-sdk/sdk')

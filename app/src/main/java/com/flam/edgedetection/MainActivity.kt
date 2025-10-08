@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "EdgeDetection"
         
         init {
+            // Load OpenCV library first (required dependency)
+            System.loadLibrary("opencv_java4")
+            // Then load our native library
             System.loadLibrary("edgedetection")
         }
     }

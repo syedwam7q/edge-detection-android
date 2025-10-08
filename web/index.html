@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edge Detection Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Edge Detection Viewer</h1>
+            <p class="subtitle">Real-time processed frame viewer</p>
+        </header>
+
+        <main>
+            <div class="viewer-section">
+                <div class="canvas-container">
+                    <canvas id="frameCanvas"></canvas>
+                </div>
+
+                <div class="controls">
+                    <button id="loadSample" class="btn btn-primary">
+                        📷 Load Sample Frame
+                    </button>
+                    <label for="fileInput" class="btn btn-secondary">
+                        📁 Upload Image
+                    </label>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    <button id="clearBtn" class="btn btn-danger">
+                        🗑️ Clear
+                    </button>
+                </div>
+            </div>
+
+            <aside class="stats-panel">
+                <h2>Frame Statistics</h2>
+                <div id="stats" class="stats-content">
+                    <!-- Stats will be populated by TypeScript -->
+                </div>
+
+                <div class="info-section">
+                    <h3>About</h3>
+                    <p>
+                        This web viewer displays edge-detected frames processed by the 
+                        Android application using OpenCV's Canny edge detection algorithm.
+                    </p>
+                    <ul>
+                        <li><strong>OpenCV:</strong> C++ image processing</li>
+                        <li><strong>JNI:</strong> Native integration</li>
+                        <li><strong>OpenGL ES:</strong> Hardware rendering</li>
+                        <li><strong>TypeScript:</strong> Web interface</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+
+        <footer>
+            <p>Edge Detection Project - Android + OpenCV + OpenGL ES + TypeScript</p>
+        </footer>
+    </div>
+
+    <script type="module" src="dist/index.js"></script>
+</body>
+</html>

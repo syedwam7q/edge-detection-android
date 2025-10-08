@@ -98,3 +98,7 @@ cmake-build-*/
 # NDK
 obj/
 libs/
+
+# OpenCV SDK (large files - users should download separately)
+OpenCV-android-sdk/
+opencv-sdk.zip

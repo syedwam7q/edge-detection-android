@@ -6,8 +6,7 @@ project("edgedetection")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Find OpenCV package
-set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/opencv/sdk/native/jni)
+# Find OpenCV package (will be provided by Gradle dependency)
 find_package(OpenCV REQUIRED)
 
 # Add source files

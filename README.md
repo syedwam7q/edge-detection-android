@@ -193,9 +193,11 @@ Or simply click the **▶️ Run** button in Android Studio.
 
 ## 📷 Screenshots
 
-| Raw Camera Feed | Edge Detection | Web Viewer |
-|----------------|----------------|------------|
-| ![Raw](screenshots/raw_feed.png) | ![Edge](screenshots/edge_detection.png) | ![Web](screenshots/web_viewer.png) |
+| Raw Camera Feed | Edge Detection |
+|----------------|----------------|
+| ![Raw](screenshots/raw_feed.png) | ![Edge](screenshots/edge_detection.png) |
+
+*Additional screenshots available: [raw-feed1.png](screenshots/raw-feed1.png), [edge-detection1.png](screenshots/edge-detection1.png)*
 
 ## 🚀 Performance
 

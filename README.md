@@ -1,6 +1,17 @@
-# 🎨 Edge Detection - Android + OpenCV + OpenGL ES + TypeScript
+# Edge Detection  
+**Android · OpenCV · OpenGL ES · TypeScript**
 
-A real-time edge detection viewer Android application that captures camera frames, processes them using OpenCV in C++ via JNI, and displays the processed output using OpenGL ES 2.0. Includes a TypeScript-based web viewer for displaying processed frames.
+---
+
+## Overview
+
+**Edge Detection** is a cross-platform computer vision project that performs **real-time edge detection** using mobile and web technologies.  
+The Android client captures live camera frames, processes them through **OpenCV (C++) via JNI**, and renders results with **OpenGL ES 2.0** for hardware acceleration.  
+A companion **TypeScript web viewer** allows for browser-based testing and visualization of edge detection algorithms.
+
+This project demonstrates an integrated pipeline combining **native image processing**, **GPU rendering**, and **cross-platform visualization**—ideal for research, benchmarking, or educational use.
+
+---
 
 ## 📱 Demo
 
@@ -8,26 +19,31 @@ A real-time edge detection viewer Android application that captures camera frame
 
 *Real-time edge detection using Canny algorithm*
 
-## ✅ Features Implemented
+## [Open-Source] Commented Code for easy understanding and feature updates.
 
-### Android Application
-- ✅ **Camera Integration**: Real-time camera feed using CameraX API
-- ✅ **Native Processing**: OpenCV C++ image processing via JNI
-- ✅ **Canny Edge Detection**: High-performance edge detection algorithm
-- ✅ **OpenGL ES Rendering**: Hardware-accelerated texture rendering
-- ✅ **FPS Counter**: Real-time performance monitoring
-- ✅ **Mode Toggle**: Switch between raw feed and edge-detected output
-- ✅ **Modular Architecture**: Clean separation of concerns
+
+## Features
+
+### Android (Kotlin + C++)
+- **Real-Time Camera Feed** — Implemented via the CameraX API.  
+- **Native Processing** — Frame processing in C++ through JNI with OpenCV 4.8+.  
+- **Canny Edge Detection** — High-performance, noise-reduced edge computation.  
+- **OpenGL ES Rendering** — GPU-accelerated texture rendering at up to 60 FPS.  
+- **Performance Metrics** — Real-time FPS and latency tracking.  
+- **Dynamic Mode Switching** — Toggle between raw feed and processed output.  
+- **Clean Architecture** — Clear separation of UI, native logic, and rendering.
 
 ### Web Viewer (TypeScript)
-- ✅ **Frame Display**: Canvas-based image rendering
-- ✅ **Client-Side Edge Detection**: Real-time Sobel operator processing
-- ✅ **Statistics Overlay**: FPS, resolution, processing time
-- ✅ **File Upload**: Load and automatically process custom images
-- ✅ **Sample Generator**: Built-in test frame generator
-- ✅ **Responsive Design**: Mobile-friendly UI
+- **Canvas-Based Visualization** using the HTML5 API.  
+- **Client-Side Edge Detection** implemented with the Sobel operator.  
+- **Performance Overlay** — FPS, resolution, and processing time.  
+- **Image Upload & Test Frame Generator** for quick experimentation.  
+- **Responsive Interface** compatible with desktop and mobile devices.
 
-## 🏗️ Project Structure
+---
+
+
+## Project Structure
 
 ```
 edge-detection/
@@ -59,21 +75,23 @@ edge-detection/
 └── README.md
 ```
 
-## 🧠 Architecture Overview
+## System Architecture
 
-### Data Flow
-
-```
-Camera Feed → YUV420 Image
-    ↓
-YUV to RGB Conversion (JNI)
-    ↓
-Native C++ Processing (OpenCV)
-    ↓
-Canny Edge Detection
-    ↓
+```text
+Camera Feed (YUV420)
+       │
+       ▼
+YUV → RGB Conversion (JNI)
+       │
+       ▼
+C++ Processing (OpenCV)
+  ├─ Gaussian Blur
+  └─ Canny Edge Detection
+       │
+       ▼
 RGB Output → OpenGL Texture
-    ↓
+       │
+       ▼
 Hardware Rendering (OpenGL ES 2.0)
 ```
 
@@ -100,43 +118,25 @@ Hardware Rendering (OpenGL ES 2.0)
    - Shows performance statistics
    - Modular, type-safe code
 
-## 🚀 Quick Start Guide
 
-### Running the Web Viewer (Easiest Way to Test!)
+## Quick Start Guide
 
-1. **Navigate to web directory:**
+### Running the Web Viewer
 ```bash
 cd web
-```
-
-2. **Install dependencies:**
-```bash
 npm install
-```
-
-3. **Build TypeScript:**
-```bash
 npm run build
-```
-
-4. **Start the server:**
-```bash
 npm run serve
 ```
-
-5. **Open in browser:**
-```
-http://localhost:8000
-```
-
-6. **Test edge detection:**
+**Test edge detection:**
    - Click "📁 Upload Image" and select any photo
    - Watch it automatically process with Sobel edge detection!
    - Check the stats panel for processing time
+   - 
 
 ### Running the Android App
 
-#### Prerequisites
+#### Requirements
 
 - Android Studio Hedgehog (2023.1.1) or later
 - Android SDK 24+ (Android 7.0+)
@@ -164,7 +164,7 @@ dependencies {
 
 1. **Clone the repository:**
 ```bash
-git clone <repository-url>
+git clone https://github.com/syedwam7q/edge-detection-android
 cd edge-detection
 ```
 
@@ -199,45 +199,12 @@ Or simply click the **▶️ Run** button in Android Studio.
 
 *Additional screenshots available: [raw-feed1.png](screenshots/raw-feed1.png), [edge-detection1.png](screenshots/edge-detection1.png)*
 
-## 🚀 Performance
+## Performance
 
 - **FPS**: 15-30 FPS (depending on device)
 - **Processing Time**: 20-40ms per frame (1080p)
 - **Memory**: ~50MB (including OpenCV)
 - **Supported Resolutions**: 480p to 4K
-
-## 🎯 Technical Highlights
-
-### JNI Integration (25%)
-- Efficient data transfer between Java and C++
-- Minimal copying with ByteBuffer usage
-- Proper memory management and error handling
-- Thread-safe native calls
-
-### OpenCV Usage (20%)
-- Canny edge detection with optimal parameters
-- Gaussian blur for noise reduction
-- Efficient YUV to RGB conversion
-- Processing time optimization
-
-### OpenGL Rendering (20%)
-- Custom vertex and fragment shaders
-- Texture streaming from camera
-- Double buffering for smooth rendering
-- Hardware acceleration
-
-### TypeScript Web Viewer (20%)
-- Type-safe DOM manipulation
-- Canvas-based rendering with client-side edge detection
-- Sobel operator implementation in pure TypeScript
-- Modular class-based architecture
-- Real-time statistics display with performance monitoring
-
-### Project Structure & Documentation (15%)
-- Clean, modular codebase
-- Comprehensive documentation
-- Proper Git commit history
-- Clear separation of concerns
 
 ## 🔧 Configuration
 
@@ -253,41 +220,24 @@ double highThreshold = 150.0; // Upper threshold for edge detection
 
 In `MainActivity.kt`:
 ```kotlin
-// Modify ImageAnalysis builder for different resolution
 val imageAnalysis = ImageAnalysis.Builder()
     .setTargetResolution(Size(1920, 1080))
     .build()
 ```
 
-## 📝 Git Commit History
 
-This project was developed with proper version control:
-- ✅ Initial project setup
-- ✅ Android app structure
-- ✅ Native C++ integration
-- ✅ OpenCV edge detection
-- ✅ OpenGL ES renderer
-- ✅ TypeScript web viewer
-- ✅ Documentation and polish
-
-## 🐛 Known Issues & Future Improvements
-
-- [ ] Add WebSocket support for real-time web streaming
-- [ ] Implement additional filters (Sobel, Laplacian)
-- [ ] Add image export functionality
-- [ ] Optimize for low-end devices
-- [ ] Add unit tests
-
-## 📚 References
+## References
 
 - [OpenCV Documentation](https://docs.opencv.org/)
 - [Android NDK Guide](https://developer.android.com/ndk/guides)
 - [OpenGL ES 2.0 Specification](https://www.khronos.org/opengles/)
 - [CameraX Documentation](https://developer.android.com/training/camerax)
+  
 
 ## 👤 Author
 
-Created as part of Android + OpenCV + OpenGL ES technical assessment.
+Syed Wamiq
+[github.com/syedwam7q]
 
 ## 📄 License
 
@@ -295,10 +245,4 @@ MIT License - Feel free to use for learning purposes.
 
 ---
 
-**Note**: This project demonstrates proficiency in:
-- Native Android development (Kotlin/Java)
-- C++ and JNI integration
-- Computer vision (OpenCV)
-- Graphics programming (OpenGL ES)
-- Web development (TypeScript)
-- Build systems (Gradle, CMake, npm)
+**© 2025 Syed Wamiq · Built with Android Studio, C++, OpenCV, OpenGL ES and TypeScript.**

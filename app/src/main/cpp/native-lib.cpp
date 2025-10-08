@@ -96,13 +96,17 @@ Java_com_flam_edgedetection_NativeLib_yuv420ToRgb(
     // Convert YUV to RGB
     cv::cvtColor(yuvMat, rgbMat, cv::COLOR_YUV2RGB_NV21);
     
+    // Rotate 90 degrees clockwise for portrait orientation
+    cv::Mat rotatedMat;
+    cv::rotate(rgbMat, rotatedMat, cv::ROTATE_90_CLOCKWISE);
+    
     env->ReleaseByteArrayElements(yuvData, yuvBytes, JNI_ABORT);
     
-    // Create output array
-    int rgbSize = rgbMat.total() * rgbMat.elemSize();
+    // Create output array with rotated dimensions
+    int rgbSize = rotatedMat.total() * rotatedMat.elemSize();
     jbyteArray rgbArray = env->NewByteArray(rgbSize);
     env->SetByteArrayRegion(rgbArray, 0, rgbSize,
-                           reinterpret_cast<const jbyte*>(rgbMat.data));
+                           reinterpret_cast<const jbyte*>(rotatedMat.data));
     
     return rgbArray;
 }

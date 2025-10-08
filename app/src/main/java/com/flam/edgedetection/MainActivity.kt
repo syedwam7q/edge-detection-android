@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity() {
             
             val imageAnalysis = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .setTargetRotation(binding.glSurfaceView.display.rotation)
                 .build()
                 .also {
                     it.setAnalyzer(cameraExecutor) { imageProxy ->
@@ -143,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             val width = imageProxy.width
             val height = imageProxy.height
             
-            // Convert YUV to RGB
+            // Convert YUV to RGB (rotation happens in native code)
             val rgbBytes = NativeLib.yuv420ToRgb(
                 bytes,
                 width,
@@ -151,15 +152,19 @@ class MainActivity : AppCompatActivity() {
                 imageProxy.planes[0].rowStride
             )
             
+            // Note: after rotation, dimensions are swapped
+            val rotatedWidth = height
+            val rotatedHeight = width
+            
             // Process frame
             val processedBytes = if (isEdgeDetectionMode) {
-                NativeLib.processFrame(rgbBytes, width, height, true)
+                NativeLib.processFrame(rgbBytes, rotatedWidth, rotatedHeight, true)
             } else {
                 rgbBytes // Raw feed
             }
             
-            // Update texture on GL thread
-            glRenderer.updateTexture(processedBytes, width, height)
+            // Update texture on GL thread with rotated dimensions
+            glRenderer.updateTexture(processedBytes, rotatedWidth, rotatedHeight)
             binding.glSurfaceView.requestRender()
             
             // Update FPS

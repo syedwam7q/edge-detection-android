@@ -22,8 +22,8 @@ public:
     void applyCannyEdgeDetection(
         const cv::Mat& inputImage,
         cv::Mat& outputImage,
-        double lowThreshold = 50.0,
-        double highThreshold = 150.0
+        double lowThreshold = 10.0,
+        double highThreshold = 50.0
     );
     
     /**

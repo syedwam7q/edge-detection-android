@@ -29,11 +29,16 @@ void EdgeProcessor::applyCannyEdgeDetection(
         gray = inputImage.clone();
     }
     
-    // Apply Gaussian blur to reduce noise
-    cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 1.5);
+    // Apply bilateral filter for edge-preserving noise reduction
+    cv::Mat filtered;
+    cv::bilateralFilter(gray, filtered, 9, 75, 75);
     
-    // Apply Canny edge detection
-    cv::Canny(blurred, edges, lowThreshold, highThreshold);
+    // Apply Canny edge detection with optimized thresholds
+    cv::Canny(filtered, edges, lowThreshold, highThreshold);
+    
+    // Optional: Dilate edges slightly to make them more visible
+    cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(2, 2));
+    cv::dilate(edges, edges, kernel);
     
     // Convert back to RGB for display
     cv::cvtColor(edges, outputImage, cv::COLOR_GRAY2RGB);

@@ -43,9 +43,23 @@
                     <h3>About</h3>
                     <p>
                         This web viewer displays edge-detected frames processed by the 
-                        Android application using OpenCV's Canny edge detection algorithm.
+                        Android application using enhanced OpenCV edge detection with CLAHE, 
+                        morphological refinement, and optimized Canny thresholds.
                     </p>
-                    <ul>
+                    <p style="margin-top: 10px; padding: 10px; background: #f0f4ff; border-left: 3px solid #667eea; border-radius: 4px;">
+                        <strong>🎯 NEW:</strong> Upload your own images and they'll be processed 
+                        with client-side Sobel edge detection in real-time!
+                    </p>
+                    <h4 style="color: #667eea; margin-top: 15px; margin-bottom: 8px;">Enhanced Algorithm:</h4>
+                    <ul style="padding-left: 20px; list-style: disc;">
+                        <li><strong>CLAHE:</strong> Adaptive contrast enhancement</li>
+                        <li><strong>Unsharp Mask:</strong> Image sharpening</li>
+                        <li><strong>Bilateral Filter:</strong> Edge-preserving smoothing</li>
+                        <li><strong>Canny (50/150):</strong> Optimized edge detection</li>
+                        <li><strong>Morphology:</strong> Edge refinement</li>
+                    </ul>
+                    <h4 style="color: #667eea; margin-top: 15px; margin-bottom: 8px;">Tech Stack:</h4>
+                    <ul style="padding-left: 20px; list-style: disc;">
                         <li><strong>OpenCV:</strong> C++ image processing</li>
                         <li><strong>JNI:</strong> Native integration</li>
                         <li><strong>OpenGL ES:</strong> Hardware rendering</li>

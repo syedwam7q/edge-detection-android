@@ -44,4 +44,10 @@ object NativeLib {
      * Get processing time in milliseconds
      */
     external fun getProcessingTime(): Double
+    
+    /**
+     * Set edge detection quality level
+     * @param level 0=Fast (lower quality), 1=Normal (default), 2=High (slower but better)
+     */
+    external fun setQualityLevel(level: Int)
 }

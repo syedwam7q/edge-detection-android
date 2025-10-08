@@ -122,4 +122,24 @@ Java_com_flam_edgedetection_NativeLib_getProcessingTime(JNIEnv* env, jobject /* 
     return g_edgeProcessor->getProcessingTime();
 }
 
+/**
+ * Set edge detection quality level
+ * @param level 0=Fast (lower quality), 1=Normal (default), 2=High (slower)
+ */
+JNIEXPORT void JNICALL
+Java_com_flam_edgedetection_NativeLib_setQualityLevel(JNIEnv* env, jobject /* this */, jint level) {
+    if (g_edgeProcessor == nullptr) {
+        LOGE("EdgeProcessor not initialized");
+        return;
+    }
+    
+    if (level < 0 || level > 2) {
+        LOGE("Invalid quality level: %d (must be 0-2)", level);
+        return;
+    }
+    
+    g_edgeProcessor->setQualityLevel(level);
+    LOGI("Edge detection quality level set to: %d", level);
+}
+
 } // extern "C"
